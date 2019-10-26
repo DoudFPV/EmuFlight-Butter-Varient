@@ -10,6 +10,7 @@ env:
     - GOAL=targets-group-3
     - GOAL=targets-group-4
     - GOAL=targets-group-rest
+
   global:
     #- DEBUG=RELWITHDEBINFO # debug symbols
     - PATH=$HOME/.local/bin:$PATH # "user" installs (pip and stuff)

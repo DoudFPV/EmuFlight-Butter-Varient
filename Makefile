@@ -11,7 +11,6 @@
 #
 ###############################################################################
 
-
 # Things that the user might override on the commandline
 #
 
@@ -206,21 +205,26 @@ CFLAGS     += $(ARCH_FLAGS) \
               $(addprefix -D,$(OPTIONS)) \
               $(addprefix -I,$(INCLUDE_DIRS)) \
               $(DEBUG_FLAGS) \
-              -std=gnu99 \
-              -Wall -Wextra -Wunsafe-loop-optimizations -Wdouble-promotion \
-              -ffunction-sections \
-              -fdata-sections \
-              -pedantic \
               $(DEVICE_FLAGS) \
+              $(TARGET_FLAGS) \
+              -D$(TARGET) \
+              -D'__FORKNAME__="$(FORKNAME)"' \
+              -D'__REVISION__="$(REVISION)"' \
+              -D'__TARGET__="$(TARGET)"' \
               -D_GNU_SOURCE \
               -DUSE_STDPERIPH_DRIVER \
-              -D$(TARGET) \
-              $(TARGET_FLAGS) \
-              -D'__FORKNAME__="$(FORKNAME)"' \
-              -D'__TARGET__="$(TARGET)"' \
-              -D'__REVISION__="$(REVISION)"' \
+              -fdata-sections \
+              -ffunction-sections \
+              -fno-common \
+              -MMD \
+              -MP \
+              -pedantic \
               -save-temps=obj \
-              -MMD -MP \
+              -std=gnu11 \
+              -Wall \
+              -Wdouble-promotion \
+              -Wextra \
+              -Wunsafe-loop-optimizations \
               $(EXTRA_FLAGS)
 
 ASFLAGS     = $(ARCH_FLAGS) \
@@ -229,20 +233,20 @@ ASFLAGS     = $(ARCH_FLAGS) \
               -MMD -MP
 
 ifeq ($(LD_FLAGS),)
-LD_FLAGS     = -lm \
-              -nostartfiles \
+LD_FLAGS    = $(ARCH_FLAGS) \
+              $(DEBUG_FLAGS) \
+              $(LTO_FLAGS) \
               --specs=nano.specs \
               -lc \
+              -lm \
               -lnosys \
-              $(ARCH_FLAGS) \
-              $(LTO_FLAGS) \
-              $(DEBUG_FLAGS) \
+              -nostartfiles \
               -static \
-              -Wl,-gc-sections,-Map,$(TARGET_MAP) \
-              -Wl,-L$(LINKER_DIR) \
               -Wl,--cref \
               -Wl,--no-wchar-size-warning \
               -Wl,--print-memory-usage \
+              -Wl,-gc-sections,-Map,$(TARGET_MAP) \
+              -Wl,-L$(LINKER_DIR) \
               -T$(LD_SCRIPT)
 endif
 
@@ -265,7 +269,6 @@ TARGET_LST      = $(OBJECT_DIR)/$(FORKNAME)_$(TARGET).lst
 TARGET_OBJS     = $(addsuffix .o,$(addprefix $(OBJECT_DIR)/$(TARGET)/,$(basename $(SRC))))
 TARGET_DEPS     = $(addsuffix .d,$(addprefix $(OBJECT_DIR)/$(TARGET)/,$(basename $(SRC))))
 TARGET_MAP      = $(OBJECT_DIR)/$(FORKNAME)_$(TARGET).map
-
 
 CLEAN_ARTIFACTS := $(TARGET_BIN)
 CLEAN_ARTIFACTS += $(TARGET_HEX)
@@ -387,7 +390,6 @@ clean_all: $(CLEAN_TARGETS)
 
 ## all_clean         : clean all valid targets (alias for above)
 all_clean: $(TARGETS_CLEAN)
-
 
 flash_$(TARGET): $(TARGET_HEX)
 	$(V0) stty -F $(SERIAL_DEVICE) raw speed 115200 -crtscts cs8 -parenb -cstopb -ixon
@@ -511,7 +513,6 @@ targets-f7:
 ## junittest         : run the cleanflight test suite, producing Junit XML result files.
 test junittest:
 	$(V0) cd src/test && $(MAKE) $@
-
 
 check-target-independence:
 	$(V1) for test_target in $(VALID_TARGETS); do \
