@@ -94,7 +94,7 @@ PG_RESET_TEMPLATE(rxFrSkySpiConfig_t, rxFrSkySpiConfig,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     .rxNum = 0,
-    .useExternalAdc = false,
+    .useExternalAdc = false
 );
 
 #if defined(USE_RX_FRSKY_SPI_TELEMETRY)
