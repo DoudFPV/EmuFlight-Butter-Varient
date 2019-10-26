@@ -215,7 +215,6 @@ CFLAGS     += $(ARCH_FLAGS) \
               -DUSE_STDPERIPH_DRIVER \
               -fdata-sections \
               -ffunction-sections \
-              -fno-common \
               -MMD \
               -MP \
               -pedantic \
