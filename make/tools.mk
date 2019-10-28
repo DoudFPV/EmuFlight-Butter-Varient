@@ -14,7 +14,10 @@
 ##############################
 
 # Set up ARM (STM32) SDK
+#ARM_SDK_DIR ?= $(TOOLS_DIR)/gcc-arm-none-eabi-7-2017-q4-major
 ARM_SDK_DIR ?= $(TOOLS_DIR)/gcc-arm-none-eabi-7-2018-q2-update
+#ARM_SDK_DIR ?= $(TOOLS_DIR)/gcc-arm-none-eabi-8-2019-q3-update
+
 # Checked below, Should match the output of $(shell arm-none-eabi-gcc -dumpversion)
 GCC_REQUIRED_VERSION ?= 7.3.1
 
