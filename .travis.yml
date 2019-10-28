@@ -48,7 +48,7 @@ install:
   - make arm_sdk_install # toolchain
 
 before_script:
-  - tools/gcc-arm-none-eabi-8-2019-q3-update/bin/arm-none-eabi-gcc --version
+  #- tools/gcc-arm-none-eabi-8-2019-q3-update/bin/arm-none-eabi-gcc --version
   - clang --version
   - clang++ --version
   - gcc --version

@@ -26,8 +26,8 @@ arm_sdk_version:
 .PHONY: arm_sdk_install
 
 #ARM_SDK_URL_BASE  := https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2017q4/gcc-arm-none-eabi-7-2017-q4-major
-#ARM_SDK_URL_BASE  := https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update
-ARM_SDK_URL_BASE := https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update
+ARM_SDK_URL_BASE  := https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update
+#ARM_SDK_URL_BASE := https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update
 
 # source: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads
 ifdef LINUX
