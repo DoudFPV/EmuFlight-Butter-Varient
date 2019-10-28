@@ -3,6 +3,7 @@
 
 env:
   matrix:
+    - GOAL=MATEKF411 # make single target
     - GOAL=MATEKF411RX # make single target
     # - GOAL=test # make test # FIXME: fails
     # - GOAL=targets-group-1 # make all (in parallel)
