@@ -18,37 +18,29 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "platform.h"
+#pragma once
 
-#ifdef USE_RX_SPI
-
-#include "drivers/io.h"
-#include "drivers/bus_spi.h"
+#include "drivers/io_types.h"
 
 #include "pg/pg.h"
-#include "pg/pg_ids.h"
-#include "pg/rx_spi.h"
 
-#include "rx/rx_spi.h"
+typedef enum {
+  FRSKY_SPI_A1_SOURCE_VBAT = 0,
+  FRSKY_SPI_A1_SOURCE_EXTADC,
+  FRSKY_SPI_A1_SOURCE_CONST
+} frSkySpiA1Source_e;
 
-PG_REGISTER_WITH_RESET_FN(rxSpiConfig_t, rxSpiConfig, PG_RX_SPI_CONFIG, 0);
+typedef struct rxCc2500SpiConfig_s {
+    uint8_t autoBind;
+    uint8_t bindTxId[2];
+    int8_t  bindOffset;
+    uint8_t bindHopData[50];
+    uint8_t rxNum;
+    uint8_t a1Source;
+    uint8_t chipDetectEnabled;
+    ioTag_t txEnIoTag;
+    ioTag_t lnaEnIoTag;
+    ioTag_t antSelIoTag;
+} rxCc2500SpiConfig_t;
 
-void pgResetFn_rxSpiConfig(rxSpiConfig_t *rxSpiConfig)
-{
-    rxSpiConfig->rx_spi_protocol = RX_SPI_DEFAULT_PROTOCOL;
-
-    // Basic SPI
-    rxSpiConfig->csnTag = IO_TAG(RX_NSS_PIN);
-    rxSpiConfig->spibus = SPI_DEV_TO_CFG(spiDeviceByInstance(RX_SPI_INSTANCE));
-
-    rxSpiConfig->extiIoTag = IO_TAG(RX_SPI_EXTI_PIN);
-
-    rxSpiConfig->bindIoTag = IO_TAG(RX_SPI_BIND_PIN);
-    rxSpiConfig->ledIoTag = IO_TAG(RX_SPI_LED_PIN);
-#ifdef RX_SPI_LED_INVERTED
-    rxSpiConfig->ledInversion = true;
-#else
-    rxSpiConfig->ledInversion = false;
-#endif
-}
-#endif
+PG_DECLARE(rxCc2500SpiConfig_t, rxCc2500SpiConfig);
