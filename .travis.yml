@@ -3,13 +3,15 @@
 
 env:
   matrix:
+    - GOAL=FURYF4OSD # make single target
+    - GOAL=HELIOSPRING # make single target
+    - GOAL=MATEKF411RX # make single target
     # - GOAL=test # make test # FIXME: fails
-    # - GOAL=FURYF4OSD # make single target
-    - GOAL=targets-group-1 # make all (in parallel)
-    - GOAL=targets-group-2
-    - GOAL=targets-group-3
-    - GOAL=targets-group-4
-    - GOAL=targets-group-rest
+    # - GOAL=targets-group-1 # make all (in parallel)
+    # - GOAL=targets-group-2
+    # - GOAL=targets-group-3
+    # - GOAL=targets-group-4
+    # - GOAL=targets-group-rest
   global:
     #- DEBUG=RELWITHDEBINFO # debug symbols
     - PATH=$HOME/.local/bin:$PATH # "user" installs (pip and stuff)

@@ -220,11 +220,23 @@ CFLAGS     += $(ARCH_FLAGS) \
               -pedantic \
               -save-temps=obj \
               -std=gnu11 \
-              -Wdouble-promotion \
               -Wall \
+              -Wdouble-promotion \
+              -Wduplicated-branches \
+              -Wduplicated-cond \
               -Wextra \
+              -Wformat-truncation \
+              -Wformat=2 \
+              -Wjump-misses-init \
+              -Wlogical-op \
+              -Wnull-dereference \
+              -Wold-style-cast \
+              -Wrestrict \
+              -Wshadow \
               -Wunknown-pragmas \
               -Wunsafe-loop-optimizations \
+              -Wuseless-cast \
+              -fno-common \
               $(EXTRA_FLAGS)
 
 ASFLAGS     = $(ARCH_FLAGS) \
