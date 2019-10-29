@@ -220,9 +220,10 @@ CFLAGS     += $(ARCH_FLAGS) \
               -pedantic \
               -save-temps=obj \
               -std=gnu11 \
-              -Wall \
               -Wdouble-promotion \
+              -Wall \
               -Wextra \
+              -Wunknown-pragmas \
               -Wunsafe-loop-optimizations \
               $(EXTRA_FLAGS)
 
