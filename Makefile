@@ -230,13 +230,10 @@ CFLAGS     += $(ARCH_FLAGS) \
               -Wjump-misses-init \
               -Wlogical-op \
               -Wnull-dereference \
-              -Wold-style-cast \
               -Wrestrict \
               -Wshadow \
               -Wunknown-pragmas \
               -Wunsafe-loop-optimizations \
-              -Wuseless-cast \
-              -fno-common \
               $(EXTRA_FLAGS)
 
 ASFLAGS     = $(ARCH_FLAGS) \
